@@ -8,17 +8,17 @@ typedef vector<cd> vcd;
 const double PI = 2*acos(0);
 cd W[maxD][2], a[maxD],aa[maxD],b[maxD],bb[maxD],cc[maxD], c[maxD];
 void fft(cd *v, cd *a, int step, int size, int dir) {
-if (size == 1) a[0] = v[0];
-else{
- size /=2;
- fft(v, a, step*2, size, dir);
- fft(v + step, a + size, step*2, size, dir);
- rep(i,size) {
- cd even = a[i]; cd odd = a[i + size];
- a[i] = even + W[i*step][dir] * odd;
- a[i + size] = even + W[i*step + maxD / 2][dir] * odd;
- }
- }
+	if (size == 1) a[0] = v[0];
+	else{
+	 size /=2;
+	 fft(v, a, step*2, size, dir);
+	 fft(v + step, a + size, step*2, size, dir);
+	 rep(i,size) {
+	 cd even = a[i]; cd odd = a[i + size];
+	 a[i] = even + W[i*step][dir] * odd;
+	 a[i + size] = even + W[i*step + maxD / 2][dir] * odd;
+	 }
+	 }
 }
 void MulPol(vector<int> &A, vector<int> &B, vector<int> &C){
  rep(i,maxD) {
